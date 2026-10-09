@@ -307,11 +307,11 @@ document.querySelectorAll('.rv').forEach(el => obs.observe(el));
 
 <script>(function(){function al(){var lg=document.querySelector('#nav-logo img'),ul=document.querySelector('.nav-links');if(!lg||!ul)return;ul.style.transform='none';var r=lg.getBoundingClientRect(),u=ul.getBoundingClientRect();if(!r.height)return;var target=r.top+r.height*0.765,cur=u.top+u.height/2;ul.style.transform='translateY('+Math.round(target-cur)+'px)';}window.addEventListener('load',al);window.addEventListener('resize',al);document.addEventListener('DOMContentLoaded',al);})();</script>
 <style id="zabout">@media(min-width:701px){
-#about{padding:40px 40px 96px!important;max-width:1280px!important}
+#about{padding:40px 40px 96px!important;max-width:1180px!important}
 .about-head{margin-bottom:32px!important}
-.about-top-row{--h:clamp(420px,calc(100vh - 230px),680px);grid-template-columns:calc(var(--h) * .75) 1fr!important;gap:clamp(40px,5vw,72px)!important;align-items:stretch!important;margin-bottom:72px!important}
+.about-top-row{--h:clamp(400px,calc(100vh - 300px),560px);grid-template-columns:calc(var(--h) * .75) 1fr!important;gap:48px!important;align-items:stretch!important;margin-bottom:72px!important}
 .about-photo-ph{height:var(--h)!important;aspect-ratio:auto!important}
-.about-top-row>div:last-child{display:flex;flex-direction:column;justify-content:space-between;height:var(--h)}
-.about-stmt{font-size:clamp(28px,min(4.3vw,6.6vh),60px)!important;line-height:.95!important;margin:-.06em 0 0!important;max-width:none!important}
-.about-bio{margin-top:0!important;font-size:13px!important;line-height:1.8!important;max-width:600px!important;margin-bottom:-.35em!important}
+.about-top-row>div:last-child{display:flex;flex-direction:column;justify-content:space-between;height:var(--h);min-width:0}
+.about-stmt{font-size:32px!important;line-height:.95!important;margin:-.06em 0 0!important;max-width:none!important;white-space:nowrap}
+.about-bio{margin-top:0!important;font-size:13px!important;line-height:1.8!important;max-width:560px!important;margin-bottom:-.35em!important}
 }</style></body></html>
