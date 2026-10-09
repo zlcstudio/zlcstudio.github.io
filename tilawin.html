@@ -330,7 +330,7 @@ document.querySelectorAll('a,button').forEach(el => {
 
 /* ── nav ── */
 const nav = document.getElementById('main-nav');
-window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 10), {passive:true});
+window.addEventListener('scroll', () => nav&&nav.classList.toggle('scrolled', scrollY > 10), {passive:true});
 
 /* ── reveal ── */
 const obs = new IntersectionObserver(es => es.forEach(e => {
