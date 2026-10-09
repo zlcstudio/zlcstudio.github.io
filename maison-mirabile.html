@@ -178,4 +178,4 @@ document.querySelectorAll('.rv').forEach(el => obs.observe(el));
 </html>
 </body></html>
 <script>(function(){function al(){var lg=document.querySelector('#nav-logo img'),ul=document.querySelector('.nav-links');if(!lg||!ul)return;ul.style.transform='none';var r=lg.getBoundingClientRect(),u=ul.getBoundingClientRect();if(!r.height)return;var target=r.top+r.height*0.765,cur=u.top+u.height/2;ul.style.transform='translateY('+Math.round(target-cur)+'px)';}window.addEventListener('load',al);window.addEventListener('resize',al);document.addEventListener('DOMContentLoaded',al);})();</script>
-</body></html>
+<style id="zcur">#cur{left:0!important;top:0!important;will-change:transform}</style><script id="zcurjs">(function(){var c=document.getElementById('cur');if(!c)return;function m(e){c.style.transform='translate3d('+e.clientX+'px,'+e.clientY+'px,0) translate(-50%,-50%)'}document.addEventListener('mousemove',m,{passive:true});document.addEventListener('pointermove',m,{passive:true});})();</script></body></html>
