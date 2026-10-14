@@ -499,8 +499,6 @@ footer {
 .zintro #zhero .zlogo{opacity:0;filter:contrast(.25) brightness(2.2) blur(5px);will-change:filter,opacity}
 .zintro #zhero.zgo .zlogo{animation:zdev 2.6s cubic-bezier(.35,0,.25,1) .3s forwards}
 @keyframes zdev{15%{opacity:1}55%{filter:contrast(.6) brightness(1.35) blur(1.5px)}to{opacity:1;filter:none}}
-.zintro #zhero .zh-intro{opacity:0;transform:translateY(10px)}
-.zintro #zhero.zgo .zh-intro{animation:zfd 1.1s ease 2s forwards}
 @keyframes zfd{to{opacity:1;transform:none}}
 @media(prefers-reduced-motion:reduce){.zintro #zhero.zgo .zlogo,.zintro #zhero.zgo .zh-intro,.zintro #zhero .zlogo,.zintro .zdraw .zf,.zintro .zdraw .zl,.zintro #zhero .zh-intro,.zintro #zhero .zh-intro{animation:none;opacity:1;transform:none;fill-opacity:1;stroke-width:0;clip-path:none;filter:none;-webkit-mask-image:none;mask-image:none}}
 </style>
@@ -508,17 +506,25 @@ footer {
 nav:not(#ticker){border-bottom:0!important}
 #zhero{display:flex;flex-direction:column;min-height:calc(100vh - var(--navh,96px));min-height:calc(100svh - var(--navh,96px));padding:0 0 28px!important;box-sizing:border-box}
 #zhero .zh-mid{flex:1;display:flex;align-items:center;justify-content:center;padding:24px 40px}
-#zhero .zh-intro{max-width:22ch!important;margin:0 auto!important;padding:0!important;text-align:center!important;font-size:clamp(30px,3.6vw,56px)!important;font-weight:400;letter-spacing:-.015em;text-transform:none;line-height:1.18;color:#111}
+#zhero .zh-intro{display:flex!important;flex-wrap:wrap;justify-content:center;align-items:center;gap:.42em .3em;max-width:min(36em,92vw)!important;margin:0 auto!important;padding:0!important;font-family:'Archivo',-apple-system,sans-serif;font-weight:900;font-size:clamp(17px,1.95vw,30px)!important;line-height:1;letter-spacing:-.005em;text-transform:uppercase;color:#0C0C0C}
+#zhero .zw{position:relative;display:inline-block;padding:.36em .52em .3em;background:#FBFAF6;transform:translateY(var(--y)) rotate(var(--r));box-shadow:0 0 0 1px rgba(0,0,0,.05),0 1px 1px rgba(0,0,0,.14),0 4px 10px rgba(0,0,0,.07)}
+#zhero .zw::after{content:"";position:absolute;inset:0;background:url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:160px;mix-blend-mode:multiply;opacity:.16;pointer-events:none}
+.zintro #zhero .zw{opacity:0}
+.zintro #zhero.zgo .zw{animation:zstick .6s cubic-bezier(.2,1.35,.45,1) forwards;animation-delay:calc(1.35s + var(--i) * .11s)}
+@keyframes zstick{0%{opacity:0;transform:translateY(calc(var(--y) - 26px)) rotate(calc(var(--r) + 11deg)) scale(1.55);box-shadow:0 0 0 1px rgba(0,0,0,.04),0 22px 34px rgba(0,0,0,.16)}45%{opacity:1}100%{opacity:1;transform:translateY(var(--y)) rotate(var(--r)) scale(1);box-shadow:0 0 0 1px rgba(0,0,0,.05),0 1px 1px rgba(0,0,0,.14),0 4px 10px rgba(0,0,0,.07)}}
+@media(prefers-reduced-motion:reduce){.zintro #zhero .zw,.zintro #zhero.zgo .zw{animation:none;opacity:1}}
 #zhero .zh-logo{margin-top:8px!important}
-@media(max-width:700px){#zhero{min-height:0!important}#zhero .zh-mid{padding:72px 20px 64px}#zhero .zh-intro{font-size:27px!important;max-width:16ch!important}}
+@media(max-width:700px){#zhero{min-height:0!important}#zhero .zh-mid{padding:64px 16px 56px}#zhero .zh-intro{font-size:15px!important;gap:.45em .3em}}
 </style>
+<script>(function(){function n(){var v=document.querySelector('nav:not(#ticker)');if(v)document.documentElement.style.setProperty('--navh',v.offsetHeight+'px')}n();addEventListener('resize',n);addEventListener('load',n)})();</script>
+
 <script>(function(){function n(){var v=document.querySelector('nav:not(#ticker)');if(v)document.documentElement.style.setProperty('--navh',v.offsetHeight+'px')}n();addEventListener('resize',n);addEventListener('load',n)})();</script>
 
 
 
 <section id="zhero" aria-label="ZLC Studio">
   <div class="zh-mid">
-  <p class="zh-intro"><span>Art direction, photography and film made with attention, curiosity and care.</span></p>
+  <p class="zh-intro"><span class="zw" style="--i:0;--r:-4deg;--y:0px">Art</span><span class="zw" style="--i:1;--r:2.5deg;--y:-3px">direction,</span><span class="zw" style="--i:2;--r:-1.5deg;--y:4px">photography</span><span class="zw" style="--i:3;--r:5deg;--y:-2px">and</span><span class="zw" style="--i:4;--r:-3deg;--y:3px">film</span><span class="zw" style="--i:5;--r:1.5deg;--y:-4px">made</span><span class="zw" style="--i:6;--r:-5.5deg;--y:2px">with</span><span class="zw" style="--i:7;--r:3deg;--y:-1px">attention,</span><span class="zw" style="--i:8;--r:-2deg;--y:5px">curiosity</span><span class="zw" style="--i:9;--r:4.5deg;--y:-3px">and</span><span class="zw" style="--i:10;--r:-3.5deg;--y:1px">care.</span></p>
     </div>
   <img class="zh-logo zlogo" src="images/logo-zlc-studio.webp?v=2" width="3142" height="822" alt="ZLC Studio"><script>(function(){var h=document.getElementById("zhero"),i=h&&h.querySelector(".zlogo");if(!h||!i)return;var d=0;function go(){if(d)return;d=1;h.classList.add("zgo")}if(i.complete&&i.naturalWidth)go();else{i.addEventListener("load",function(){(i.decode?i.decode():Promise.resolve()).then(go,go)});i.addEventListener("error",go)}setTimeout(go,7000)})();</script>
 
