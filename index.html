@@ -563,9 +563,10 @@ document.addEventListener('DOMContentLoaded',function(){
  /* light: soft circular opening from the centre */
  function lights(){if(done)return;done=1;T.forEach(clearTimeout);cancelAnimationFrame(raf);cs.forEach(function(c){c.classList.add('on')});ov.classList.add('zset');
   d.classList.remove('zhide','zdark');
-  var W=hero.clientWidth,H=hero.clientHeight,cx=W/2,cy=H*.46,F=Math.max(W,H)*.16,R=Math.hypot(Math.max(cx,W-cx),Math.max(cy,H-cy))+F,dur=2700,s0=performance.now();
-  function step(t){var k=Math.min(1,(t-s0)/dur),e=-(Math.cos(Math.PI*k)-1)/2,r=-F+(R+F)*e;
-   var g='radial-gradient(circle at '+cx+'px '+cy+'px, transparent '+Math.max(0,r)+'px, #000 '+(r+F)+'px)';ov.style.webkitMaskImage=g;ov.style.maskImage=g;
+  var W=hero.clientWidth,H=hero.clientHeight,lr=l2.getBoundingClientRect(),hr=hero.getBoundingClientRect(),cx=lr.left-hr.left+lr.width/2,cy=lr.top-hr.top+lr.height*.68,a0=Math.max(.18,lr.height/lr.width),F=Math.max(W,H)*.14,R=Math.hypot(Math.max(cx,W-cx),Math.max(cy,H-cy))*1.15+F,dur=3000,s0=performance.now();
+  function step(t){var k=Math.min(1,(t-s0)/dur),e=-(Math.cos(Math.PI*k)-1)/2,r=-F*.6+(R+F*.6)*e,ro=Math.max(1,r+F),ri=Math.max(0,r),asp=a0+(1-a0)*Math.min(1,e*1.6);
+   var ry=ro*.62,rx=ry+(lr.width*.55)*Math.pow(1-e,.7);
+   var g='radial-gradient(ellipse '+rx+'px '+ry+'px at '+cx+'px '+cy+'px, transparent '+(ri/ro*100)+'%, #000 100%)';ov.style.webkitMaskImage=g;ov.style.maskImage=g;
    if(k<1)requestAnimationFrame(step);else{run=0;ov.remove();d.classList.remove('zlock')}}
   requestAnimationFrame(step)}
  function go(){try{build()}catch(e){lights();return}raf=requestAnimationFrame(draw)}
