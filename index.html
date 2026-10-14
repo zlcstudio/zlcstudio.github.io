@@ -506,7 +506,7 @@ html.zdark{overflow:hidden}
 html.zdark #zfab,html.zdark #zfab-btn{opacity:0;pointer-events:none}
 #zfab,#zfab-btn{transition:opacity .8s ease}
 #zhero{position:relative;display:flex;flex-direction:column;min-height:100vh;min-height:100svh;padding:0 0 28px!important;box-sizing:border-box;background:#fff;transition:background-color 1.4s ease}
-html.zdark #zhero{background:#0B0A09}
+html.zdark #zhero{background:#050505}
 #zhero .zh-mid{position:relative;z-index:3;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px 40px 24px}
 #zhero .zh-intro{display:block!important;max-width:none!important;margin:0 auto!important;padding:0!important;text-align:center!important;font-family:'Archivo',-apple-system,sans-serif;font-weight:400;font-size:clamp(22px,2.45vw,38px)!important;line-height:1.28;letter-spacing:-.012em;text-transform:none;color:#111;text-wrap:balance;transition:color 1.4s ease}
 html.zdark #zhero .zh-intro{color:#F3EEE6}
@@ -523,7 +523,7 @@ html.zdark #zhero .zh-logo{filter:invert(1)}
 html.zbuild #zhero .zh-logo{opacity:0}
 #zparts{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:4;transition:opacity 1.2s ease}
 #zgrainw{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2;mix-blend-mode:multiply;opacity:0;transition:opacity 1.4s ease}
-html.zdark #zgrainw{mix-blend-mode:normal;opacity:.17}
+html.zdark #zgrainw{mix-blend-mode:screen;opacity:.2}
 @media(max-width:700px){#zhero .zh-mid{padding:40px 20px 20px}#zhero .zh-intro{font-size:21px!important;max-width:16em!important}#zhero .zbrk{display:none}}
 </style>
 <script>
@@ -535,9 +535,9 @@ document.addEventListener('DOMContentLoaded',function(){
  var hero=document.getElementById('zhero');if(!hero)return;
  /* animated grain */
  var gc=document.getElementById('zgrainw'),gx=gc.getContext('2d'),vis=1;
- function gs(){gc.width=Math.ceil(hero.clientWidth/3);gc.height=Math.ceil(hero.clientHeight/3)}gs();addEventListener('resize',gs);
+ function gs(){var k=Math.min(devicePixelRatio||1,2);gc.width=Math.ceil(hero.clientWidth*k/1.5);gc.height=Math.ceil(hero.clientHeight*k/1.5)}gs();addEventListener('resize',gs);
  if('IntersectionObserver'in window)new IntersectionObserver(function(e){vis=e[0].isIntersecting}).observe(hero);
- (function grain(){if(vis){var w=gc.width,h=gc.height,im=gx.createImageData(w,h),p=new Uint32Array(im.data.buffer);for(var i=0;i<p.length;i++){var v=Math.random()*255|0;p[i]=0xff000000|v<<16|v<<8|v}gx.putImageData(im,0,0)}setTimeout(function(){requestAnimationFrame(grain)},60)})();
+ (function grain(){if(vis){var w=gc.width,h=gc.height,im=gx.createImageData(w,h),p=new Uint32Array(im.data.buffer);for(var i=0;i<p.length;i++){var r=Math.random(),v=r*r*r*255|0;p[i]=0xff000000|v<<16|v<<8|v}gx.putImageData(im,0,0)}setTimeout(function(){requestAnimationFrame(grain)},60)})();
  /* split phrase into letters */
  var cs=[];[].forEach.call(hero.querySelectorAll('.zw2'),function(w){var t=w.textContent;w.textContent='';for(var k=0;k<t.length;k++){var c=document.createElement('span');c.className='zc';c.textContent=t[k];w.appendChild(c);cs.push(c)}});
  if(!intro)return;
