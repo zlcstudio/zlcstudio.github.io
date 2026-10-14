@@ -540,15 +540,15 @@ document.addEventListener('DOMContentLoaded',function(){
  var pc=document.createElement('canvas');pc.className='zp';ov.appendChild(pc);
  hero.appendChild(ov);
  /* grain */
- var gx=gc.getContext('2d'),run=1,U,CO,GW,GH,im,pb,dis=-1;
+ var gx=gc.getContext('2d'),run=1,U,CO,CY,GW,GH,im,pb,dis=-1;
  function gs(){var k=Math.min(devicePixelRatio||1,2);GW=gc.width=Math.ceil(hero.clientWidth*k/1.5);GH=gc.height=Math.ceil(hero.clientHeight*k/1.5);
   im=gx.createImageData(GW,GH);pb=new Uint32Array(im.data.buffer);U=new Uint8Array(GW*GH);for(var i=0;i<U.length;i++)U[i]=Math.random()*255|0;
-  CO=new Float32Array(GW);var a1=Math.random()*6,a2=Math.random()*6;for(var x=0;x<GW;x++){var u=x/GW;CO[x]=.035*Math.sin(u*5.3+a1)+.02*Math.sin(u*11.7+a2)}}
+  CO=new Float32Array(GW);CY=new Float32Array(GH);var a1=Math.random()*6,a2=Math.random()*6;for(var x=0;x<GW;x++)CO[x]=.06*Math.sin(x/GW*4.1+a1);for(var y=0;y<GH;y++)CY[y]=Math.sin(y/GH*3.3+a2)}
  gs();addEventListener('resize',function(){if(dis<0)gs()});
- function paint(){var W=GW,H=GH,i=0,band=.32,F=dis<0?-9:dis*(1+band*2)-band;
-  for(var y=0;y<H;y++){var yb=1-y/H;for(var x=0;x<W;x++,i++){var r=Math.random(),v=5+(r*r*r*50)|0;
-   if(F>-9){var t=(F-(yb+CO[x]))/band;if(t>0&&U[i]<t*255){v=255-((1-Math.min(1,t))*r*60|0)}}
-   pb[i]=0xff000000|v<<16|v<<8|v}}gx.putImageData(im,0,0)}
+ function paint(){var W=GW,H=GH,i=0,w=.42,P=dis<0?-1:dis*(1+w);
+  for(var y=0;y<H;y++){var ry=CY[y];for(var x=0;x<W;x++,i++){var r=Math.random(),v=5+(r*r*r*50);
+   if(P>=0){var t=(P-(U[i]/255*(1-.12)+.06+CO[x]*ry))/w;if(t>0){t=t>1?1:t;t=t*t*(3-2*t);v=v+(255-v)*t-(1-t)*r*18}}
+   v=v<0?0:v>255?255:v|0;pb[i]=0xff000000|v<<16|v<<8|v}}gx.putImageData(im,0,0)}
  (function grain(){if(!run)return;if(dis<0)paint();setTimeout(function(){requestAnimationFrame(grain)},60)})();
  /* letters */
  var cs=[];[].forEach.call(m2.querySelectorAll('.zw2'),function(w){var t=w.textContent;w.textContent='';for(var k=0;k<t.length;k++){var c=document.createElement('span');c.className='zc';c.textContent=t[k];w.appendChild(c);cs.push(c)}});
@@ -570,8 +570,8 @@ document.addEventListener('DOMContentLoaded',function(){
   px.putImageData(im,0,0);if(!all&&!done)raf=requestAnimationFrame(draw);else if(!done){ov.classList.add('zset');at(1300,lights)}}
  /* light: soft circular opening from the centre */
  function lights(){if(done)return;done=1;T.forEach(clearTimeout);cancelAnimationFrame(raf);cs.forEach(function(c){c.classList.add('on')});ov.classList.add('zset');
-  d.classList.remove('zdark');var dur=2600,s0=performance.now();
-  function step(t){var k=Math.min(1,Math.max(0,(t-s0)/dur));dis=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;paint();
+  d.classList.remove('zdark');var dur=3200,s0=performance.now();
+  function step(t){var k=Math.min(1,Math.max(0,(t-s0)/dur));dis=-(Math.cos(Math.PI*k)-1)/2;paint();
    if(k<1)requestAnimationFrame(step);else{run=0;d.classList.remove('zhide');ov.remove();d.classList.remove('zlock')}}
   setTimeout(function(){requestAnimationFrame(step)},400)}
  function go(){try{build()}catch(e){lights();return}raf=requestAnimationFrame(draw)}
