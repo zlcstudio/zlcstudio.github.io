@@ -553,7 +553,7 @@ document.addEventListener('DOMContentLoaded',function(){
  /* letters */
  var cs=[];[].forEach.call(m2.querySelectorAll('.zw2'),function(w){var t=w.textContent;w.textContent='';for(var k=0;k<t.length;k++){var c=document.createElement('span');c.className='zc';c.textContent=t[k];w.appendChild(c);cs.push(c)}});
  var T=[],done=0,raf,typing=0;function at(ms,f){T.push(setTimeout(f,ms))}
- function typeAll(){var tt=250;cs.forEach(function(c,i){tt+=44+(/[,]/.test(c.textContent)?180:0)+(i==cs.length-1?240:0);at(tt,function(){c.classList.add('on');if(i==cs.length-1)at(380,lights)})})}
+ function typeAll(){var tt=250;cs.forEach(function(c,i){tt+=64+(/[,]/.test(c.textContent)?280:0)+(i==cs.length-1?380:0);at(tt,function(){c.classList.add('on');if(i==cs.length-1)at(550,lights)})})}
  /* particles */
  var px=pc.getContext('2d'),N=0,P;
  function build(){var W=hero.clientWidth,H=hero.clientHeight;pc.width=W;pc.height=H;
@@ -561,7 +561,7 @@ document.addEventListener('DOMContentLoaded',function(){
   var oc=document.createElement('canvas');oc.width=lw;oc.height=lh;var o=oc.getContext('2d');o.drawImage(logo,0,0,lw,lh);var a=o.getImageData(0,0,lw,lh).data;
   var pts=[];for(var y=0;y<lh;y+=2)for(var x=0;x<lw;x+=2){var al=a[(y*lw+x)*4+3];if(al>40&&Math.random()<al/255)pts.push(x+ox,y+oy,al)}
   N=pts.length/3;P=new Float32Array(N*7);for(var i=0;i<N;i++){var j=i*7;P[j]=Math.random()*W;P[j+1]=Math.random()*H;P[j+2]=pts[i*3];P[j+3]=pts[i*3+1];
-   var cx=(pts[i*3]-ox)/lw;P[j+4]=350+cx*900+Math.random()*850;P[j+5]=1100+Math.random()*800;P[j+6]=pts[i*3+2]}}
+   var cx=(pts[i*3]-ox)/lw;P[j+4]=600+cx*1700+Math.random()*1300;P[j+5]=1800+Math.random()*1300;P[j+6]=pts[i*3+2]}}
  var t0=0;function draw(t){if(!t0)t0=t;var e=t-t0,W=pc.width,H=pc.height,im=px.createImageData(W,H),b=new Uint32Array(im.data.buffer),all=1;
   for(var i=0;i<N;i++){var j=i*7,k=(e-P[j+4])/P[j+5],x,y,al;
    if(k<=0){all=0;if(Math.random()<.5)continue;x=P[j]+Math.random()*2-1;y=P[j+1]+Math.random()*2-1;al=60+Math.random()*90}
@@ -571,7 +571,7 @@ document.addEventListener('DOMContentLoaded',function(){
  /* light: soft circular opening from the centre */
  function lights(){if(done)return;done=1;T.forEach(clearTimeout);cs.forEach(function(c){c.classList.add('on')});
   ov.classList.add('zset');pc.style.transition='opacity .15s';pc.style.opacity=0;cancelAnimationFrame(raf);
-  d.classList.remove('zdark');var dur=2000,s0=performance.now(),G=[[.03,.09],[.21,.26],[.44,.48],[.63,.665],[.8,.82]];
+  d.classList.remove('zdark');var dur=2600,s0=performance.now(),G=[[.03,.09],[.21,.26],[.44,.48],[.63,.665],[.8,.82]];
   function inG(k){for(var i=0;i<G.length;i++)if(k>=G[i][0]&&k<=G[i][1])return 1-i/(G.length+1);return 0}
   function jit(el,a){el.style.transform=a?'translate3d('+((Math.random()-.5)*a*22|0)+'px,'+((Math.random()-.5)*a*4|0)+'px,0) skewX('+((Math.random()-.5)*a*8).toFixed(1)+'deg)':''}
   function step(t){var k=Math.min(1,Math.max(0,(t-s0)/dur)),base=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2,g=inG(k);
@@ -580,9 +580,9 @@ document.addEventListener('DOMContentLoaded',function(){
    jit(m2,g*.6);jit(l2,g);
    if(k<1)requestAnimationFrame(step);else{jit(m2,0);jit(l2,0);run=0;cancelAnimationFrame(raf);d.classList.remove('zhide','zlock');ov.remove()}}
   requestAnimationFrame(step)}
- function go(){try{build()}catch(e){lights();return}raf=requestAnimationFrame(draw);at(2500,function(){if(!typing){typing=1;typeAll()}})}
+ function go(){try{build()}catch(e){lights();return}raf=requestAnimationFrame(draw);at(3300,function(){if(!typing){typing=1;typeAll()}})}
  if(logo.complete&&logo.naturalWidth)go();else{logo.addEventListener('load',go);logo.addEventListener('error',lights)}
- at(16000,lights);
+ at(24000,lights);
  ov.addEventListener('click',lights);addEventListener('keydown',lights,{once:true});addEventListener('wheel',lights,{once:true,passive:true});addEventListener('touchmove',lights,{once:true,passive:true});
 });
 })();
